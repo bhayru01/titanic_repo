@@ -1,9 +1,10 @@
 from src import __version__ as model_version
+from logging.handlers import TimedRotatingFileHandler
+from logging import StreamHandler
 from pydantic import BaseSettings
 from pathlib import Path
 import logging
 import sys
-from logging.handlers import TimedRotatingFileHandler, StreamHandler
 
 
 FORMATTER = logging.Formatter("%(asctime)s — %(name)s — %(levelname)s — %(message)s")
@@ -33,9 +34,9 @@ class LoggingSettings(BaseSettings):
         return logger
 
 
-
 with open(API_ROOT / "VERSION") as version_file:
     app_version = version_file.read().strip()
+
 
 class Settings(BaseSettings):
     PROJECT_NAME = 'Titanic Survival Prediction API'
