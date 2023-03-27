@@ -1,21 +1,22 @@
 import json
-from fastapi import APIRouter, Request, HTTPException
-from fastapi.responses import HTMLResponse
-from app.schemas import Health, PredictionResults, MultipleTitanicDataInputs
 from typing import Any
-from app.config import settings
-from fastapi.encoders import jsonable_encoder
-import pandas as pd
-import numpy as np
-from loguru import logger
-from src.models.predict import make_prediction
 
+import numpy as np
+import pandas as pd
+from fastapi import APIRouter, HTTPException, Request
+from fastapi.encoders import jsonable_encoder
+from fastapi.responses import HTMLResponse
+from loguru import logger
+
+from app.config import settings
+from app.schemas import Health, MultipleTitanicDataInputs, PredictionResults
+from src.models.predict import make_prediction
 
 root_router = APIRouter()
 api_router = APIRouter()
 
 
-@root_router.get('/')
+@root_router.get("/")
 def index(request: Request) -> Any:
     """
     Basic HTML response.
@@ -33,14 +34,16 @@ def index(request: Request) -> Any:
     return HTMLResponse(content=body)
 
 
-@api_router.get('/health', response_model = Health, status_code=200)
+@api_router.get("/health", response_model=Health, status_code=200)
 def health() -> dict:
     """
     Root Get.
     """
-    health = Health(name = settings.PROJECT_NAME,
-                    api_version = settings.API_VERSION,
-                    model_version = settings.MODEL_VERSION)
+    health = Health(
+        name=settings.PROJECT_NAME,
+        api_version=settings.API_VERSION,
+        model_version=settings.MODEL_VERSION,
+    )
     return health.dict()
 
 

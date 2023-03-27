@@ -1,10 +1,13 @@
+from typing import Any, List, Optional
+
 from pydantic import BaseModel
-from typing import Any, Optional, List
+
 
 class Health(BaseModel):
     name: str
     api_version: str
     model_version: str
+
 
 class PredictionResults(BaseModel):
     errors: Optional[Any]
@@ -42,7 +45,7 @@ class MultipleTitanicDataInputs(BaseModel):
                         "Ticket": "PC 17599",
                         "Fare": 71.2833,
                         "Cabin": "C85",
-                        "Embarked": "C"
+                        "Embarked": "C",
                     }
                 ]
             }

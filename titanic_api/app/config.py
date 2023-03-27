@@ -1,15 +1,17 @@
-from src import __version__ as model_version
-from logging.handlers import TimedRotatingFileHandler
-from logging import StreamHandler
-from pydantic import BaseSettings
-from pathlib import Path
 import logging
 import sys
+from logging import StreamHandler
+from logging.handlers import TimedRotatingFileHandler
+from pathlib import Path
 
+from pydantic import BaseSettings
+
+from src import __version__ as model_version
 
 FORMATTER = logging.Formatter("%(asctime)s — %(name)s — %(levelname)s — %(message)s")
 API_ROOT = Path(__file__).parent.parent.absolute()
 LOG_FILE = API_ROOT / "api.log"
+
 
 class LoggingSettings(BaseSettings):
     LOGGING_LEVEL: int = logging.INFO
@@ -20,7 +22,7 @@ class LoggingSettings(BaseSettings):
         return console_handler
 
     def get_file_handler(self):
-        file_handler = TimedRotatingFileHandler(LOG_FILE, when='midnight')
+        file_handler = TimedRotatingFileHandler(LOG_FILE, when="midnight")
         file_handler.setFormatter(FORMATTER)
         return file_handler
 
@@ -39,9 +41,10 @@ with open(API_ROOT / "VERSION") as version_file:
 
 
 class Settings(BaseSettings):
-    PROJECT_NAME = 'Titanic Survival Prediction API'
+    PROJECT_NAME = "Titanic Survival Prediction API"
     API_VERSION = app_version
     API_V1_STR: str = "/api/v1"
     MODEL_VERSION = model_version
+
 
 settings = Settings()
