@@ -87,3 +87,6 @@ target/
 
 # Mypy cache
 .mypy_cache/
+
+
+my_main_do_not_track.py

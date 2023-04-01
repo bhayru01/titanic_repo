@@ -4,16 +4,17 @@ from sklearn.model_selection import train_test_split
 
 from src.config.core import config
 from src.models.pipeline import titanic_pipe
-from src.processing.data_manager import load_dataset, save_pipeline
+from src.processing.data_manager import load_dataset, sequential_split, save_pipeline
 
 
 def run_training() -> None:
     """Train the model."""
 
     # read train/test data
-    df_train = load_dataset(filename=config.app_config.train_data_file)
-    df_test = load_dataset(filename=config.app_config.test_data_file)
-    y_test = load_dataset(filename=config.app_config.y_test_data_file)
+    titanic_dataset = load_dataset(data_url = config.app_config.data_url)
+    df_train, df_test, y_test = sequential_split(data = titanic_dataset,
+                                                 split_ratio = config.model_config.test_size,
+                                                 target = config.model_config.target)
 
     # divide train and validate
     X_train, X_val, y_train, y_val = train_test_split(
@@ -36,7 +37,7 @@ def run_training() -> None:
     print()
     print()
     print("Test report:")
-    print(classification_report(y_test["Survived"], prediction_test))
+    print(classification_report(y_test, prediction_test))
 
     # Save model
     save_pipeline(titanic_pipe)

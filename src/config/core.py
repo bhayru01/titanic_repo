@@ -3,7 +3,7 @@ from strictyaml import YAML, load
 from typing import Dict, List, Sequence
 from pydantic import BaseModel
 
-import src
+#import src
 # Project Directories
 PACKAGE_ROOT = Path(__file__).parent.parent.absolute()
 ROOT = PACKAGE_ROOT.parent
@@ -18,6 +18,7 @@ class AppConfig(BaseModel):
     """
 
     package_name: str
+    data_url: str
     train_data_file: str
     test_data_file: str
     y_test_data_file: str
@@ -40,6 +41,7 @@ class ModelConfig(BaseModel):
     numerical_vars: List[str]
     categorical_vars: List[str]
     var_to_extract_letter: str
+    vars_to_cast: List[str]
 
 
 class Config(BaseModel):

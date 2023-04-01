@@ -2,28 +2,29 @@
 package_name: titanic_repo
 
 # Data Files
+data_url: https://www.openml.org/data/get_csv/16826755/phpMYEkMl
 train_data_file: train.csv
 test_data_file: test.csv
 y_test_data_file: y_test.csv
 
 # VARIABLES
 # Target
-target: Survived
+target: survived
 
 pipeline_name: src
 pipeline_save_file: titanic_classification_model
 
 features:
-  - Pclass
-  - Name
-  - Sex
-  - Age
-  - SibSp
-  - Parch
-  - Ticket
-  - Fare
-  - Cabin
-  - Embarked
+  - pclass
+  - name
+  - sex
+  - age
+  - sibsp
+  - parch
+  - ticket
+  - fare
+  - cabin
+  - embarked
 
 # set train/test split
 test_size: 0.15
@@ -31,28 +32,31 @@ test_size: 0.15
 # to set the random seed
 random_state: 1991
 
-var_to_extract_letter: Cabin
+var_to_extract_letter: cabin
 
-var_to_extract_title: Name
+var_to_extract_title: name
 
 # New var name after title extraction from Name
-title_var_name: Title
+title_var_name: title
 
 # variables to drop
 vars_to_drop:
-  - Name
-  - Ticket
+  - name
+  - ticket
 
 numerical_vars:
-  - Pclass
-  - Age
-  - SibSp
-  - Parch
-  - Fare
+  - pclass
+  - age
+  - sibsp
+  - parch
+  - fare
 
 categorical_vars:
-  - Sex
-  - Cabin
-  - Embarked
-  - Title
+  - sex
+  - cabin
+  - embarked
+  - title
 
+vars_to_cast:
+  - age
+  - fare
