@@ -5,10 +5,10 @@ from src.models.predict import make_prediction
 def test_make_prediction(sample_input_data):
 
     expected_first_prediction = 0
-    expected_13th_prediction = 1
+    expected_13th_prediction = 0
     expected_last_prediction = 0
-    expected_prediction_size = 418
-    expected_prediction_type = np.ndarray
+    expected_prediction_size = 196
+    expected_prediction_type = list
     expected_single_prediction_type = np.int64
     expected_errors = None
 

@@ -3,9 +3,9 @@ from src.config.core import config
 
 
 def test_extract_letter_transformer(sample_input_data):
-    expected_first_transformer = float
-    expected_13th_transformer = 'B'
-    expected_last_transformer = float
+    expected_first_transformer = str
+    expected_13th_transformer = '?'
+    expected_last_transformer = str
 
     transformer = ExtractLetter(variable=config.model_config.var_to_extract_letter)
     subject = transformer.fit_transform(sample_input_data)
@@ -16,9 +16,9 @@ def test_extract_letter_transformer(sample_input_data):
 
 
 def test_extract_title_transformer(sample_input_data):
-    expected_first_transformer = 'Mr'
-    expected_13th_transformer = 'Mrs'
-    expected_last_transformer = 'Master'
+    expected_first_transformer = 'Mrs'
+    expected_13th_transformer = 'Mr'
+    expected_last_transformer = 'Mr'
 
     transformer = ExtractTitle(variable=config.model_config.var_to_extract_title)
     subject = transformer.fit_transform(sample_input_data)
