@@ -16,20 +16,11 @@ from sklearn.preprocessing import StandardScaler
 
 from src.config.core import config
 from src.features.build_features import ExtractLetter, ExtractTitle
-from src.processing.preprocessors import DropVars, ReplaceQuestionMarks, CastVarsToFloat
+from src.processing.preprocessors import DropVars
 
 # set up the pipeline
 titanic_pipe = Pipeline(
-    [   # ===== Data Pre-Processing =====
-        (
-            "replace_question_marks",
-            ReplaceQuestionMarks(),
-        ),
-        # Cast variables to numeric
-        (
-            "cast_variables_to_float",
-            CastVarsToFloat(variables=config.model_config.vars_to_cast),
-        ),
+    [
         # ===== FEATURE EXTRACTION =====
         # Extract letter from cabin
         (

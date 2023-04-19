@@ -16,16 +16,16 @@ class PredictionResults(BaseModel):
 
 
 class TitanicDataInputSchema(BaseModel):
-    Pclass: Optional[int]
-    Name: Optional[str]
-    Sex: Optional[str]
-    Age: Optional[int]
-    SibSp: Optional[str]
-    Parch: Optional[int]
-    Ticket: Optional[str]
-    Fare: Optional[float]
-    Cabin: Optional[str]
-    Embarked: Optional[str]
+    pclass: Optional[int]
+    name: Optional[str]
+    sex: Optional[str]
+    age: Optional[int]
+    sibsp: Optional[str]
+    parch: Optional[int]
+    ticket: Optional[str]
+    fare: Optional[float]
+    cabin: Optional[str]
+    embarked: Optional[str]
 
 
 class MultipleTitanicDataInputs(BaseModel):
@@ -36,16 +36,16 @@ class MultipleTitanicDataInputs(BaseModel):
             "example": {
                 "inputs": [
                     {
-                        "Pclass": 1,
-                        "Name": "Cumings, Mrs. John Bradley (Florence Briggs Thayer)",
-                        "Sex": "female",
-                        "Age": 38,
-                        "SibSp": "1",
-                        "Parch": 0,
-                        "Ticket": "PC 17599",
-                        "Fare": 71.2833,
-                        "Cabin": "C85",
-                        "Embarked": "C",
+                        "pclass": 1,
+                        "name": "Cumings, Mrs. John Bradley (Florence Briggs Thayer)",
+                        "sex": "female",
+                        "age": 38,
+                        "sibsp": "1",
+                        "parch": 0,
+                        "ticket": "PC 17599",
+                        "fare": 71.2833,
+                        "cabin": "C85",
+                        "embarked": "C",
                     }
                 ]
             }

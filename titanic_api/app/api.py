@@ -53,7 +53,7 @@ async def predict(input_data: MultipleTitanicDataInputs) -> Any:
     Make titanic survival predictions with the latest model.
     """
     input_df = pd.DataFrame(jsonable_encoder(input_data.inputs))
-
+    print("INPUT", input_df)
     logger.info(f"Making prediction on inputs: {input_data.inputs}")
     results = make_prediction(input_data=input_df.replace({np.nan: None}))
 

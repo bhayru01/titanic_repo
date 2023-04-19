@@ -3,25 +3,7 @@ import numpy as np
 from typing import List, Optional, Tuple
 from src.config.core import config
 from pydantic import BaseModel, ValidationError
-from src.processing.preprocessors import DropVars, ReplaceQuestionMarks, CastVarsToFloat
-from sklearn.pipeline import Pipeline
 
-
-class TitanicDataInputSchema(BaseModel):
-    pclass: Optional[int]
-    name: Optional[str]
-    sex: Optional[str]
-    age: Optional[int]
-    sibsp: Optional[str]
-    parch: Optional[int]
-    ticket: Optional[str]
-    fare: Optional[float]
-    cabin: Optional[str]
-    embarked: Optional[str]
-
-
-class MultipleTitanicDataInputs(BaseModel):
-    inputs: List[TitanicDataInputSchema]
 
 def drop_na_inputs(input_data: pd.DataFrame) -> pd.DataFrame:
     """Check model inputs for na values and filter."""
@@ -42,7 +24,6 @@ def validate_inputs(input_data: pd.DataFrame) -> Tuple[pd.DataFrame, Optional[di
     """Check model inputs for unprocessable values."""
     relevant_data = input_data[config.model_config.features].copy()
     validated_data = drop_na_inputs(relevant_data)
-
     errors = None
 
     try:
@@ -55,5 +36,19 @@ def validate_inputs(input_data: pd.DataFrame) -> Tuple[pd.DataFrame, Optional[di
     return validated_data, errors
 
 
+class TitanicDataInputSchema(BaseModel):
+    Pclass: Optional[int]
+    Name: Optional[str]
+    Sex: Optional[str]
+    Age: Optional[int]
+    SibSp: Optional[str]
+    Parch: Optional[int]
+    Ticket: Optional[str]
+    Fare: Optional[float]
+    Cabin: Optional[str]
+    Embarked: Optional[str]
 
+
+class MultipleTitanicDataInputs(BaseModel):
+    inputs: List[TitanicDataInputSchema]
 

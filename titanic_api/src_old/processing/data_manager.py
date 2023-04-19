@@ -2,21 +2,12 @@ from src.config.core import DATASET_DIR, TRAINED_MODEL_DIR, config
 import pandas as pd
 from sklearn.pipeline import Pipeline
 import joblib
-from typing import Tuple
 
 
-def load_dataset(data_url: str) -> pd.DataFrame:
-    data = pd.read_csv(data_url)
-    return data
+def load_dataset(filename: str) -> pd.DataFrame:
+    df = pd.read_csv(DATASET_DIR / filename)
+    return df
 
-def sequential_split(data: pd.DataFrame,
-                     split_ratio: float,
-                     target: str) -> Tuple[pd.DataFrame]:
-    train_test_split_point = round(len(data) * (1 - split_ratio))
-    train = data.iloc[:train_test_split_point]
-    test = data.iloc[train_test_split_point::].drop(target, axis=1)
-    y_test = data.iloc[train_test_split_point::][target]
-    return train, test, y_test
 
 def save_pipeline(pipeline: Pipeline) -> None:
     """Save pipeline """
