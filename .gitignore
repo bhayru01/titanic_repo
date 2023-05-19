@@ -90,3 +90,4 @@ target/
 
 
 my_main_do_not_track.py
+api*
